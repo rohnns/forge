@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef } from "react";
-import { X, Plus, Link, Github } from "lucide-react";
+import { X, Plus, Link, GitBranch } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { useUser } from "../context/UserContext";
 
@@ -240,7 +240,7 @@ export default function AddProjectModal({ type, onClose, onSuccess }: AddProject
                           onFocus={e => (e.target as HTMLInputElement).style.borderColor = "var(--teal)"}
                           onBlur={e => (e.target as HTMLInputElement).style.borderColor = "var(--border2)"}
                         />
-                        <Github size={13} color="var(--muted)" style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)" }} />
+                        <GitBranch size={13} color="var(--muted)" style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)" }} />
                       </div>
                     </div>
                   </div>
@@ -307,7 +307,7 @@ export default function AddProjectModal({ type, onClose, onSuccess }: AddProject
                         onFocus={e => (e.target as HTMLInputElement).style.borderColor = "var(--teal)"}
                         onBlur={e => (e.target as HTMLInputElement).style.borderColor = "var(--border2)"}
                       />
-                      <Github size={13} color="var(--muted)" style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)" }} />
+                      <GitBranch size={13} color="var(--muted)" style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)" }} />
                     </div>
                   </div>
                   <div>

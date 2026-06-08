@@ -16,24 +16,16 @@ import SplashScreen from "./components/SplashScreen";
 
 export default function Home() {
   const [activePage, setActivePage] = useState("match");
+  const [showSplash, setShowSplash] = useState(true);
+  const [openChatWithId, setOpenChatWithId] = useState<string | null>(null);
   const { user, profile, loading, setProfile, signInWithGoogle, signInWithGitHub } = useUser();
 
-  // Only show splash on first visit per session
-  const [showSplash, setShowSplash] = useState(() => {
-    if (typeof window === "undefined") return false;
-    const seen = sessionStorage.getItem("forge_splash_seen");
-    return !seen;
-  });
-
   useEffect(() => {
-    if (showSplash) {
-      sessionStorage.setItem("forge_splash_seen", "1");
-      const t = setTimeout(() => setShowSplash(false), 1800);
-      return () => clearTimeout(t);
-    }
-  }, [showSplash]);
+    const timer = setTimeout(() => setShowSplash(false), 2200);
+    return () => clearTimeout(timer);
+  }, []);
 
-  if (showSplash) return <SplashScreen onDone={() => setShowSplash(false)} />;
+  if (showSplash) return <SplashScreen />;
 
   if (loading) {
     return (
@@ -57,9 +49,14 @@ export default function Home() {
     );
   }
 
+  const handleNavToMessages = (chatUserId?: string) => {
+    setOpenChatWithId(chatUserId ?? null);
+    setActivePage("messages");
+  };
+
   const pages: Record<string, React.ReactNode> = {
-    match: <MatchPage onNav={setActivePage} />,
-    messages: <MessagesPage />,
+    match: <MatchPage onNavToMessages={handleNavToMessages} />,
+    messages: <MessagesPage initialOpenUserId={openChatWithId} onChatOpened={() => setOpenChatWithId(null)} />,
     score: <ScorePage />,
     hackathons: <HackathonsPage />,
     profile: <ProfilePage />,
@@ -75,7 +72,13 @@ export default function Home() {
         <DevpostBanner />
         {pages[activePage]}
       </main>
-      <BottomNav active={activePage} onNav={setActivePage} />
+      <BottomNav
+        active={activePage}
+        onNav={(page) => {
+          if (page !== "messages") setOpenChatWithId(null);
+          setActivePage(page);
+        }}
+      />
     </div>
   );
 }

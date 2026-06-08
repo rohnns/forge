@@ -36,7 +36,7 @@ function EmptyState() {
       animation: "fadeUp 0.3s ease both",
     }}>
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="1.2">
-        <circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/>
+        <circle cx="12" cy="12" r="10" /><path d="M8 12h8M12 8v8" />
       </svg>
       <div style={{ fontSize: 16, fontWeight: 600, color: "var(--text)" }}>you've seen everyone</div>
       <div className="mono" style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.6 }}>
@@ -192,7 +192,7 @@ function FilterModal({ filters, onApply, onClose }: {
                 }}>
                   {draft.availability.includes(a) && (
                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
-                      <path d="M1.5 4.5l2 2 4-4" stroke="var(--bg)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M1.5 4.5l2 2 4-4" stroke="var(--bg)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   )}
                 </div>
@@ -225,7 +225,8 @@ function FilterModal({ filters, onApply, onClose }: {
   );
 }
 
-export default function MatchPage({ onNav }: { onNav?: (page: string) => void }) {
+export default function MatchPage({ onNavToMessages }: { onNavToMessages: (userId: string) => void }) {
+
   const { user, profile } = useUser();
   const [profiles, setProfiles] = useState<any[]>([]);
   const [seenIds, setSeenIds] = useState<Set<string>>(new Set());
@@ -514,7 +515,7 @@ export default function MatchPage({ onNav }: { onNav?: (page: string) => void })
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" strokeWidth="1.8">
-                <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                <path d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
             <div style={{ fontSize: 22, fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>it's a match.</div>
@@ -532,7 +533,7 @@ export default function MatchPage({ onNav }: { onNav?: (page: string) => void })
               <button
                 onClick={() => {
                   setShowModal(false);
-                  onNav?.("messages");
+                  onNavToMessages(matchedUserId);
                 }}
                 className="mono"
                 style={{

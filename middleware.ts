@@ -24,8 +24,8 @@ function buildCSP(nonce: string): string {
   return [
     "default-src 'self'",
     scriptSrc,
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    "font-src 'self' https://fonts.gstatic.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com",
+    "font-src 'self' https://fonts.gstatic.com https://api.fontshare.com",
     "img-src 'self' data: blob: https:",
     "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.anthropic.com https://generativelanguage.googleapis.com",
     "frame-ancestors 'none'",
@@ -48,7 +48,7 @@ export function middleware(req: NextRequest) {
   // Expose nonce to layout.tsx via response header
   res.headers.set("x-nonce", nonce);
   // Set per-request CSP with the nonce
-  res.headers.set("Content-Security-Policy", buildCSP(nonce));
+ // res.headers.set("Content-Security-Policy", buildCSP(nonce));
 
   // Protect API routes — require content-type on POST requests
   if (req.method === "POST" && req.nextUrl.pathname.startsWith("/api/")) {

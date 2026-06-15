@@ -16,14 +16,26 @@ import SplashScreen from "./components/SplashScreen";
 
 export default function Home() {
   const [activePage, setActivePage] = useState("match");
-  const [showSplash, setShowSplash] = useState(true);
-  const [openChatWithId, setOpenChatWithId] = useState<string | null>(null);
   const { user, profile, loading, setProfile, signInWithGoogle, signInWithGitHub } = useUser();
 
+  // Only show splash on first visit per session
+  const [showSplash, setShowSplash] = useState(false);
+
   useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 2200);
-    return () => clearTimeout(timer);
+    const seen = sessionStorage.getItem("forge_splash_seen");
+
+    if (!seen) {
+      setShowSplash(true);
+    }
   }, []);
+
+  useEffect(() => {
+    if (showSplash) {
+      sessionStorage.setItem("forge_splash_seen", "1");
+      const t = setTimeout(() => setShowSplash(false), 1800);
+      return () => clearTimeout(t);
+    }
+  }, [showSplash]);
 
   if (showSplash) return <SplashScreen />;
 
@@ -49,14 +61,9 @@ export default function Home() {
     );
   }
 
-  const handleNavToMessages = (chatUserId?: string) => {
-    setOpenChatWithId(chatUserId ?? null);
-    setActivePage("messages");
-  };
-
   const pages: Record<string, React.ReactNode> = {
-    match: <MatchPage onNavToMessages={handleNavToMessages} />,
-    messages: <MessagesPage initialOpenUserId={openChatWithId} onChatOpened={() => setOpenChatWithId(null)} />,
+    match: <MatchPage onNav={setActivePage} />,
+    messages: <MessagesPage />,
     score: <ScorePage />,
     hackathons: <HackathonsPage />,
     profile: <ProfilePage />,
@@ -72,13 +79,7 @@ export default function Home() {
         <DevpostBanner />
         {pages[activePage]}
       </main>
-      <BottomNav
-        active={activePage}
-        onNav={(page) => {
-          if (page !== "messages") setOpenChatWithId(null);
-          setActivePage(page);
-        }}
-      />
+      <BottomNav active={activePage} onNav={setActivePage} />
     </div>
   );
 }

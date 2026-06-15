@@ -12,14 +12,15 @@
   --text: #e8e9eb;
   --muted: #6b7280;
   --muted2: #9ca3af;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-sans: 'Syne', sans-serif;
+  --font-sans: 'Inter', sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { background: var(--bg); color: var(--text); height: 100%; }
 body { font-family: var(--font-sans); }
-.mono { font-family: var(--font-mono); }
+.mono { font-family: 'Inter', sans-serif; }
+.font-questrial { font-family: 'Questrial', sans-serif; }
+.font-satoshi { font-family: 'Satoshi', sans-serif; font-weight: 900; }
 
 .dot-bg {
   position: fixed; inset: 0; pointer-events: none; z-index: 0;

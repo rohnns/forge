@@ -163,9 +163,9 @@ export default function Onboarding({ onComplete }: { onComplete: (data: Onboardi
         {/* STEP 0 — Intro */}
         {step === 0 && (
           <div style={{ textAlign: "center" }}>
-            <div className="mono" style={{ fontSize: 30, fontWeight: 600, color: "var(--teal)", marginBottom: 8 }}>forge/</div>
+            <div style={{ fontFamily: "'Questrial', sans-serif", fontSize: 30, fontWeight: 400, color: "var(--text)", marginBottom: 8 }}>.merge</div>
             <h1 style={{ fontSize: 30, fontWeight: 600, color: "var(--text)", marginBottom: 12, lineHeight: 1.3 }}>
-              find your team.<br />build something real.
+              find teammates.
             </h1>
             <p style={{ fontSize: 14, color: "var(--muted2)", lineHeight: 1.7, marginBottom: 40, maxWidth: 380, margin: "0 auto 40px" }}>
               match with engineers, designers, and builders who complement your skills. software, hardware, robotics — all disciplines welcome.

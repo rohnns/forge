@@ -11,7 +11,7 @@ export default function AuthScreen({ onGoogleSignIn, onGitHubSignIn }: AuthScree
     background: "var(--surface2)", border: "0.5px solid var(--border2)",
     color: "var(--text)", cursor: "pointer", transition: "all 0.15s",
     display: "flex", alignItems: "center", justifyContent: "center", gap: 12,
-    fontSize: 14, fontFamily: "inherit", marginBottom: 10,
+    fontSize: 14, fontFamily: "'Inter', sans-serif", marginBottom: 10,
   };
 
   const hover = (e: React.MouseEvent) => {
@@ -35,17 +35,20 @@ export default function AuthScreen({ onGoogleSignIn, onGitHubSignIn }: AuthScree
     }}>
       <div className="dot-bg" />
       <div style={{ width: "100%", maxWidth: 420, position: "relative", zIndex: 1, textAlign: "center" }}>
-        <div className="mono" style={{ fontSize: 32, fontWeight: 600, color: "var(--teal)", marginBottom: 8 }}>forge/</div>
-        <h1 style={{ fontSize: 26, fontWeight: 600, color: "var(--text)", marginBottom: 10, lineHeight: 1.3 }}>
-          find your team.<br />build something real.
+        <div style={{ fontSize: 36, fontFamily: "'Questrial', sans-serif", fontWeight: 400, color: "var(--text)", marginBottom: 8, letterSpacing: "-0.01em" }}>.merge</div>
+        <h1 style={{ fontSize: 22, fontFamily: "'Satoshi', sans-serif", fontWeight: 900, color: "var(--text)", marginBottom: 10, lineHeight: 1.3 }}>
+          find teammates.
         </h1>
-        <p style={{ fontSize: 14, color: "var(--muted2)", lineHeight: 1.7, maxWidth: 320, margin: "0 auto 40px" }}>
+        <p style={{ fontSize: 14, fontFamily: "'Inter', sans-serif", color: "var(--muted2)", lineHeight: 1.7, maxWidth: 320, margin: "0 auto 40px" }}>
           match with engineers who complement your skills. hackathons, side projects, hardware builds — all of it.
         </p>
 
         <div style={{ background: "var(--surface)", border: "0.5px solid var(--border2)", borderRadius: 16, padding: 28, marginBottom: 20 }}>
-          <div className="mono" style={{ fontSize: 11, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 20 }}>
-            // sign in to continue
+          <div style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 900, fontSize: 15, color: "var(--text)", marginBottom: 4 }}>
+            let's design your team.
+          </div>
+          <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: "var(--muted)", marginBottom: 20 }}>
+            sign up for the app with these options:
           </div>
 
           {/* GitHub */}
@@ -53,7 +56,7 @@ export default function AuthScreen({ onGoogleSignIn, onGitHubSignIn }: AuthScree
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
             </svg>
-            continue with github
+            go with github.
           </button>
 
           {/* Google */}
@@ -64,12 +67,12 @@ export default function AuthScreen({ onGoogleSignIn, onGitHubSignIn }: AuthScree
               <path d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
               <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
             </svg>
-            continue with google
+            start with google.
           </button>
         </div>
 
-        <p className="mono" style={{ fontSize: 10, color: "var(--muted)" }}>
-          by signing in you agree to not build something boring
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, color: "var(--muted)" }}>
+          by continuing, you agree to our terms · privacy<br />(and you agree to be cool and make cool stuff)
         </p>
       </div>
     </div>

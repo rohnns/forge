@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { X, Check, Zap, SlidersHorizontal } from "lucide-react";
+import { X, Check, Brain, SlidersHorizontal } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { useUser } from "../context/UserContext";
 
@@ -36,7 +36,7 @@ function EmptyState() {
       animation: "fadeUp 0.3s ease both",
     }}>
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="1.2">
-        <circle cx="12" cy="12" r="10" /><path d="M8 12h8M12 8v8" />
+        <circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/>
       </svg>
       <div style={{ fontSize: 16, fontWeight: 600, color: "var(--text)" }}>you've seen everyone</div>
       <div className="mono" style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.6 }}>
@@ -192,7 +192,7 @@ function FilterModal({ filters, onApply, onClose }: {
                 }}>
                   {draft.availability.includes(a) && (
                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
-                      <path d="M1.5 4.5l2 2 4-4" stroke="var(--bg)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M1.5 4.5l2 2 4-4" stroke="var(--bg)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   )}
                 </div>
@@ -225,8 +225,7 @@ function FilterModal({ filters, onApply, onClose }: {
   );
 }
 
-export default function MatchPage({ onNavToMessages }: { onNavToMessages: (userId: string) => void }) {
-
+export default function MatchPage({ onNav }: { onNav?: (page: string) => void }) {
   const { user, profile } = useUser();
   const [profiles, setProfiles] = useState<any[]>([]);
   const [seenIds, setSeenIds] = useState<Set<string>>(new Set());
@@ -459,7 +458,7 @@ export default function MatchPage({ onNavToMessages }: { onNavToMessages: (userI
           </div>
 
           {/* Swipe buttons */}
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", alignItems: "center", marginTop: 20 }}>
+          <div style={{ display: "flex", gap: 16, justifyContent: "center", alignItems: "center", marginTop: 20 }}>
             <button onClick={() => swipe("left")} disabled={!current} style={{
               width: 52, height: 52, borderRadius: "50%", border: "0.5px solid var(--border2)",
               background: "var(--surface)", cursor: current ? "pointer" : "not-allowed",
@@ -471,17 +470,6 @@ export default function MatchPage({ onNavToMessages }: { onNavToMessages: (userI
             >
               <X size={20} color="#ef4444" />
             </button>
-            <button disabled={!current} style={{
-              width: 52, height: 52, borderRadius: "50%", border: "0.5px solid var(--border2)",
-              background: "var(--surface)", cursor: current ? "pointer" : "not-allowed",
-              display: "flex", alignItems: "center", justifyContent: "center", opacity: current ? 1 : 0.3,
-              transition: "transform 0.1s",
-            }}
-              onMouseEnter={e => { if (current) (e.currentTarget as HTMLElement).style.transform = "scale(1.08)"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "scale(1)"; }}
-            >
-              <Zap size={20} color="#f59e0b" />
-            </button>
             <button onClick={() => swipe("right")} disabled={!current} style={{
               width: 64, height: 64, borderRadius: "50%", border: "0.5px solid rgba(45,212,191,0.4)",
               background: current ? "var(--teal-dim)" : "var(--surface)", cursor: current ? "pointer" : "not-allowed",
@@ -491,7 +479,7 @@ export default function MatchPage({ onNavToMessages }: { onNavToMessages: (userI
               onMouseEnter={e => { if (current) (e.currentTarget as HTMLElement).style.transform = "scale(1.08)"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "scale(1)"; }}
             >
-              <Check size={24} color="var(--teal)" />
+              <Brain size={24} color="var(--teal)" />
             </button>
           </div>
         </div>
@@ -515,7 +503,7 @@ export default function MatchPage({ onNavToMessages }: { onNavToMessages: (userI
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" strokeWidth="1.8">
-                <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
               </svg>
             </div>
             <div style={{ fontSize: 22, fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>it's a match.</div>
@@ -533,7 +521,7 @@ export default function MatchPage({ onNavToMessages }: { onNavToMessages: (userI
               <button
                 onClick={() => {
                   setShowModal(false);
-                  onNavToMessages(matchedUserId);
+                  onNav?.("messages");
                 }}
                 className="mono"
                 style={{

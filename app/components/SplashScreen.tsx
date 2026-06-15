@@ -47,15 +47,16 @@ export default function SplashScreen() {
         {/* Wordmark */}
         <div style={{ textAlign: "center" }}>
           <div style={{
-            fontFamily: "var(--font-sans)", fontSize: 36, fontWeight: 700,
-            color: "var(--text)", letterSpacing: "-0.02em", lineHeight: 1,
+            fontFamily: "'Questrial', sans-serif", fontSize: 36, fontWeight: 400,
+            color: "var(--text)", letterSpacing: "-0.01em", lineHeight: 1,
           }}>
-            forge<span style={{ color: "var(--teal)" }}>/</span>
+            .merge
           </div>
-          <div className="mono" style={{
-            fontSize: 11, color: "var(--muted)", marginTop: 8, letterSpacing: "0.12em",
+          <div style={{
+            fontFamily: "'Satoshi', sans-serif", fontWeight: 900,
+            fontSize: 12, color: "var(--muted)", marginTop: 8,
           }}>
-            // build together
+            for your next genius masterplan.
           </div>
         </div>
       </div>

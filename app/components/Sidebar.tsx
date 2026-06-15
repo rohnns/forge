@@ -23,8 +23,8 @@ export default function Sidebar({ active, onNav }: { active: string; onNav: (id:
       flexDirection: "column", padding: "24px 0", height: "100vh",
     }}>
       <div style={{ padding: "0 20px 28px", borderBottom: "0.5px solid var(--border)", marginBottom: 20 }}>
-        <div className="mono" style={{ fontSize: 15, fontWeight: 500, color: "var(--teal)", letterSpacing: "-0.3px" }}>forge/</div>
-        <div className="mono" style={{ fontSize: 11, color: "var(--muted)", marginTop: 2 }}>engineer matchmaking</div>
+        <div style={{ fontFamily: "'Questrial', sans-serif", fontSize: 15, fontWeight: 400, color: "var(--text)" }}>.merge</div>
+        <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: "var(--muted)", marginTop: 2 }}>find teammates.</div>
       </div>
 
       {sections.map(section => (

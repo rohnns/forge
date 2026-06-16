@@ -48,7 +48,7 @@ export function middleware(req: NextRequest) {
   // Expose nonce to layout.tsx via response header
   res.headers.set("x-nonce", nonce);
   // Set per-request CSP with the nonce
- // res.headers.set("Content-Security-Policy", buildCSP(nonce));
+  res.headers.set("Content-Security-Policy", buildCSP(nonce));
 
   // Protect API routes — require content-type on POST requests
   if (req.method === "POST" && req.nextUrl.pathname.startsWith("/api/")) {

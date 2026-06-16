@@ -19,13 +19,13 @@ const isDev = process.env.NODE_ENV === "development";
 function buildCSP(nonce: string): string {
   const scriptSrc = isDev
     ? `script-src 'self' 'nonce-${nonce}' 'unsafe-eval'`
-    : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`;
+    : `script-src 'self' 'unsafe-inline' 'unsafe-eval'`;
 
   return [
     "default-src 'self'",
-    scriptSrc,
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com",
-    "font-src 'self' https://fonts.gstatic.com https://api.fontshare.com",
+    "font-src 'self' https://fonts.gstatic.com https://api.fontshare.com https://cdn.fontshare.com",
     "img-src 'self' data: blob: https:",
     "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.anthropic.com https://generativelanguage.googleapis.com",
     "frame-ancestors 'none'",
